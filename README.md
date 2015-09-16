@@ -9,6 +9,13 @@ This is a repository about SideBar!!!
 和Raywenderlich里的Scroll View School(Swift) 里介绍的写SideBar的视频。
 
 后续我将仿照各大App的侧栏进行模仿，下一个是Uber (๑•̀ㅂ•́)و✧
+
 稍后将上传gif图。
 
 rep init today(2015.09.16)
+
+上传了两个已完成的Demo
+
+2015.09.17.
+
+Uber示例已经做好，接下来慢慢完善
