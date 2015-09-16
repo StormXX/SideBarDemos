@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let leftViewControllerNavigation = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("leftViewControllerNavigation") as! UINavigationController
         let mainViewControllerNavigation = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("mainViewControllerNavigation") as! UINavigationController
+        let mainViewController = mainViewControllerNavigation.viewControllers[0] as! ViewController
+        mainViewController.delegate = self
         
         sideBarViewController = SideBarViewController(leftViewController: leftViewControllerNavigation, mainViewController: mainViewControllerNavigation, overlap: 50)
         window?.rootViewController = sideBarViewController
@@ -48,5 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate: ViewControllerDelegate {
+    func showSideBarButtonTapped() {
+        sideBarViewController.toggleSideBar(true)
+    }
 }
 

@@ -8,6 +8,10 @@
 
 import UIKit
 
+public protocol ViewControllerDelegate: NSObjectProtocol {
+    func showSideBarButtonTapped()
+}
+
 struct Picture {
     var imageTitle: String
     var imageName : String
@@ -17,6 +21,7 @@ let imageCellIdentifier = "imageCell"
 class ViewController: UIViewController {
     
     var dataArray: [Picture]!
+    weak var delegate: ViewControllerDelegate?
     
     @IBOutlet var tableView: UITableView! {
         didSet {
@@ -34,15 +39,21 @@ class ViewController: UIViewController {
             dataArray.append(picture)
         }
         
-        // Do any additional setup after loading the view, typically from a nib.
+        let showSideBarButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon-show-sidebar"), style: UIBarButtonItemStyle.Plain, target: self, action: "showSideBarButtonTapped")
+        navigationItem.leftBarButtonItem = showSideBarButton
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    func showSideBarButtonTapped() {
+        if (delegate?.respondsToSelector("showSideBarButtonTapped") != nil) {
+            delegate!.showSideBarButtonTapped()
+        }
+        
+    }
 }
 
 extension ViewController: UITableViewDataSource {
